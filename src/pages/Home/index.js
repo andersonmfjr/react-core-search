@@ -1,7 +1,43 @@
-import React from 'react';
+import React, { useState, useCallback } from 'react';
+import PropTypes from 'prop-types';
 
-// import { Container } from './styles';
+import Logo from '../../components/Logo';
+import SearchBar from '../../components/SearchBar';
 
-const Home = () => <div>Home page</div>;
+import { Container, Favorites } from './styles';
 
-export default Home;
+export default function Home({ history }) {
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const handleSearchQuery = useCallback(e => setSearchQuery(e.target.value), [
+    searchQuery,
+  ]);
+
+  const search = () => {
+    if (searchQuery.length > 0) {
+      history.push({ pathname: '/search', search: `?q=${searchQuery}` });
+    } else {
+      alert('Please fill the field.');
+    }
+  };
+
+  return (
+    <Container>
+      <Logo marginBottom="30px" width="200px" hasLink={false} />
+      <SearchBar
+        value={searchQuery}
+        width="500px"
+        handleInput={handleSearchQuery}
+        placeholder="Which article are you looking for?"
+        submit={search}
+      />
+      <Favorites to="/favorites">Go to favorites</Favorites>
+    </Container>
+  );
+}
+
+Home.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }).isRequired,
+};
