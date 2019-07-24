@@ -9,6 +9,7 @@ const GlobalStyles = createGlobalStyle`
     padding: 0;
     height: 100%;
     font-family: 'Helvetica Neue', 'Helvetica', 'Open Sans', 'Arial', sans-serif;
+    background: #f3f3f3;
   }
 `;
 
