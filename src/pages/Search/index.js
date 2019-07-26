@@ -1,5 +1,6 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import ReactPaginate from 'react-paginate';
 
 import queryString from 'querystring';
 
@@ -10,7 +11,7 @@ import Article from '../../components/Article';
 
 import api from '../../config/api';
 
-import { Container, Articles } from './styles';
+import { Container, Articles, PaginateContainer } from './styles';
 
 export default function Search({ history, location: { search } }) {
   const [searchQuery, setSearchQuery] = useState(
@@ -20,6 +21,7 @@ export default function Search({ history, location: { search } }) {
   const [loading, setLoading] = useState(false);
   const [totalHits, setTotalHits] = useState(null);
   const [pages, setPages] = useState(null);
+  const [activePage, setActivePage] = useState(1);
 
   const handleSearchQuery = useCallback(
     e => {
@@ -30,6 +32,7 @@ export default function Search({ history, location: { search } }) {
 
   const fetchData = async (page = 1) => {
     try {
+      setActivePage(page - 1);
       const pageSize = 10;
       setLoading(true);
 
@@ -49,6 +52,11 @@ export default function Search({ history, location: { search } }) {
       console.log(error);
       setLoading(false);
     }
+  };
+
+  const handlePageClick = data => {
+    const { selected } = data;
+    fetchData(selected + 1);
   };
 
   const getQuery = () => {
@@ -85,6 +93,22 @@ export default function Search({ history, location: { search } }) {
             />
           ))}
         </Articles>
+        <PaginateContainer>
+          <ReactPaginate
+            pageCount={pages}
+            previousLabel="Previous"
+            nextLabel="Next"
+            breakLabel="..."
+            breakClassName="break-me"
+            marginPagesDisplayed={2}
+            pageRangeDisplayed={3}
+            forcePage={activePage}
+            onPageChange={handlePageClick}
+            containerClassName="pagination"
+            subContainerClassName="pages pagination"
+            activeClassName="active"
+          />
+        </PaginateContainer>
       </>
     );
   };

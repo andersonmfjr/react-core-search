@@ -1,5 +1,6 @@
 import React from 'react';
 import { createGlobalStyle } from 'styled-components';
+import './styles.css';
 
 import Routes from './routes';
 
