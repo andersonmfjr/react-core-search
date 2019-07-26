@@ -33,15 +33,6 @@ export const Link = styled.a`
   text-overflow: ellipsis;
 `;
 
-export const Star = styled.p`
-  font-weight: bold;
-  margin: 0;
-  margin-top: 0;
-  margin-bottom: 0;
-  margin-bottom: 15px;
-  cursor: pointer;
-`;
-
 export const Type = styled.span`
   text-transform: capitalize;
 `;

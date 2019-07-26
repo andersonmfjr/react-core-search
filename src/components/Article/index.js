@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Item, Title, Link, Star, Type, Description, Info } from './styles';
+import { Item, Title, Link, Type, Description, Info } from './styles';
 
 const Article = ({ id, title, description, type, authors, urls }) => (
   <Item>
@@ -10,7 +10,6 @@ const Article = ({ id, title, description, type, authors, urls }) => (
     <Info>
       <i>Type:</i> <Type>{type}</Type> - <i>Authors: {authors.join(', ')}</i>
     </Info>
-    <Star>Add favorite</Star>
     {urls.map((url, i) => (
       <Link key={`${id}-${i}-${url}`} href={url} target="_blank">
         {url}

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 import Logo from '../Logo';
 import SearchBar from '../SearchBar';
-import FavoritesLink from '../FavoritesLink';
 
 import { Container } from './styles';
 
@@ -17,7 +16,6 @@ const Header = ({ searchQuery, handleSearchQuery, search }) => (
       placeholder="Which article are you looking for?"
       submit={search}
     />
-    <FavoritesLink marginTop="0">Go to Favorites</FavoritesLink>
   </Container>
 );
 

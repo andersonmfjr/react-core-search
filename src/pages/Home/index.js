@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 import Logo from '../../components/Logo';
 import SearchBar from '../../components/SearchBar';
-import FavoritesLink from '../../components/FavoritesLink';
 
 import { Container } from './styles';
 
@@ -32,7 +31,6 @@ export default function Home({ history }) {
         placeholder="Which article are you looking for?"
         submit={search}
       />
-      <FavoritesLink>Go to Favorites</FavoritesLink>
     </Container>
   );
 }
